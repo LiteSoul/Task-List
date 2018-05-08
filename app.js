@@ -11,6 +11,8 @@ loadEventListeners()
 function loadEventListeners() {
 	//Add task event
 	form.addEventListener('submit', addTask)
+	//Remove task event
+	taskList.addEventListener('click', removeTask)
 }
 
 //Add Task, takes event since it's event handler
@@ -36,4 +38,18 @@ function addTask(e) {
 	taskList.appendChild(li)
 	//Clear the input
 	taskInput.value = ''
+}
+
+//Remove task
+function removeTask(e) {
+	//if we click on the icon, it gets the i tag, but we want
+	//the a tag, which is the parent:
+	const aTag = e.target.parentElement
+	const liTag = aTag.parentElement
+	const liTagText = liTag.textContent.slice(1, -14)
+	if (aTag.classList.contains('delete-item')) {
+		if (confirm(`Are you sure you want to delete this task?:\n${liTagText}`)) {
+			liTag.remove()
+		}
+	}
 }
