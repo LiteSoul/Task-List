@@ -13,6 +13,10 @@ function loadEventListeners() {
 	form.addEventListener('submit', addTask)
 	//Remove task event
 	taskList.addEventListener('click', removeTask)
+	//Clear tasks
+	clearBtn.addEventListener('click', clearTasks)
+	//Filter tasks
+	filter.addEventListener('keyup', filterTasks)
 }
 
 //Add Task, takes event since it's event handler
@@ -52,4 +56,26 @@ function removeTask(e) {
 			liTag.remove()
 		}
 	}
+}
+
+//Clear tasks
+function clearTasks() {
+	// super slow method: taskList.innerHTML=''
+	while (taskList.firstChild) {
+		taskList.firstChild.remove()
+	}
+}
+
+//Filter tasks
+function filterTasks(e) {
+	const text = e.target.value.toLowerCase()
+	const allTasks = document.querySelectorAll('.collection-item')
+	allTasks.forEach((task) => {
+		const item = task.firstChild.textContent
+		if (item.toLowerCase().indexOf(text) != -1) {
+			task.style.display = 'block'
+		} else {
+			task.style.display = 'none'
+		}
+	})
 }
