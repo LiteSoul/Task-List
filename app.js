@@ -98,13 +98,14 @@ function removeTask(e) {
 		if (confirm(`Are you sure you want to delete this task?:\n${liTagText}`)) {
 			liTag.remove()
 			//Remove from LS
-			removeTaskFromLS(aTag.parentElement)
+			removeTaskFromLS(liTag)
 		}
 	}
 }
 
 //Remove from LS
 function removeTaskFromLS(taskItem) {
+	console.log(taskItem.textContent)
 	let tasks
 	if (localStorage.getItem('tasks') === null) {
 		tasks = []
@@ -113,7 +114,7 @@ function removeTaskFromLS(taskItem) {
 	}
 
 	tasks.forEach((task, index) => {
-		if (taskItem.textContent === task) {
+		if (taskItem.textContent.slice(1, -14) === task) {
 			tasks.splice(index, 1)
 		}
 	})
