@@ -127,7 +127,7 @@ function removeTaskFromLS(taskItem) {
 
 //Clear tasks
 function clearTasks() {
-	// super slow method: taskList.innerHTML=''
+	// slower method: taskList.innerHTML=''
 	while (taskList.firstChild) {
 		taskList.firstChild.remove()
 	}
