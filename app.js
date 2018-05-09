@@ -93,7 +93,8 @@ function removeTask(e) {
 	//the a tag, which is the parent:
 	const aTag = e.target.parentElement
 	const liTag = aTag.parentElement
-	const liTagText = liTag.textContent.slice(1, -14)
+	//Slice the last 14 chars due to them being the Material icon 'delete_forever'
+	const liTagText = liTag.textContent.slice(0, -14)
 	if (aTag.classList.contains('delete-item')) {
 		if (confirm(`Are you sure you want to delete this task?:\n${liTagText}`)) {
 			liTag.remove()
@@ -114,7 +115,9 @@ function removeTaskFromLS(taskItem) {
 	}
 
 	tasks.forEach((task, index) => {
-		if (taskItem.textContent.slice(1, -14) === task) {
+		//Slice the last 14 chars due to them being the Material icon 'delete_forever'
+		const taskItemSliced = taskItem.textContent.slice(0, -14)
+		if (taskItemSliced === task) {
 			tasks.splice(index, 1)
 		}
 	})
