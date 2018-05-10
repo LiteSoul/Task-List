@@ -64,7 +64,7 @@ function addTask(e) {
 	//Add class, and move to the right with secondary content
 	link.className = 'delete-item secondary-content'
 	//Add icon html
-	link.innerHTML = '<i class="material-icons">delete_forever</i>'
+	link.innerHTML = '<i class="material-icons left">delete_forever</i>'
 	//Append the link to li
 	li.appendChild(link)
 	//Append the li to ul
